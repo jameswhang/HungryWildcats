@@ -9,9 +9,13 @@
 	vertical-align: middle;
 }
 
+.navbar .navbar-default {
+	color: black;
+}
+
 body {
-	background-color: #47008F;
-	color: #E6E600;
+	background-color: #CC99FF;
+	color: #000000;
 }
 
 input {
