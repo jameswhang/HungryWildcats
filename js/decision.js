@@ -19,10 +19,11 @@ var bindClickFunctions = function() {
 }
 
 var showMenus = function(money) {
-	var menu = Parse.Object.extend('Menu');
+	var menu = Parse.Object.extend('evanstonMenu');
 	var query = new Parse.Query(menu);
 	query.find({
 		success: function(results) {
+			console.log(results);
 			var results = generateRandom(results, money, 10),
 				html = formatOutput(results);
 			$('.menuChoices').append(html);
@@ -36,10 +37,10 @@ var showMenus = function(money) {
 }
 
 var showMenuFromRestaurant = function(money, name) {
-	var menu = Parse.Object.extend('Menu');
+	var menu = Parse.Object.extend('evanstonMenu');
 	var query = new Parse.Query(menu);
 	$('.menuChoices').empty();
-	query = query.equalTo('Restaurant', name)
+	query = query.equalTo('RestaurantName', name)
 	query.find({
 		success: function(results) {
 			var results = generateRandom(results, money, 10),
@@ -64,9 +65,10 @@ var generateRandom = function(menus, money, num) {
 	for (var i = 0; i < numResults && results.length < num; i++) {
 		var tempRes = {},
 			aMenu = menus[i],
-			mPrice = aMenu._serverData.Price,
-			mName = aMenu._serverData.Name,
-			mRes = aMenu._serverData.Restaurant;
+			mPrice = aMenu._serverData.ItemPrice,
+			mName = aMenu._serverData.ItemName,
+			mDesc = aMenu._serverData.ItemDesc,
+			mRes = aMenu._serverData.RestaurantName;
 
 		if (mPrice > money) {
 			continue; // can't afford..
@@ -74,6 +76,7 @@ var generateRandom = function(menus, money, num) {
 			tempRes['name'] = mName;
 			tempRes['quantity'] = Math.floor(money / mPrice);
 			tempRes['where'] = mRes;
+			tempRes['desc'] = mDesc;
 			results.push(tempRes);
 		}
 	}

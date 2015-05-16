@@ -1,0 +1,17 @@
+.restaurant :hover{
+	font-color: yellow;
+	cursor: pointer;
+}
+
+.menuChoices .header {
+	float: none;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+body {
+	background-color: #47008F;
+	color: #E6E600;
+
+}
+
