@@ -1,12 +1,22 @@
 Parse.initialize("LKT2P8orJ6egkhiXZqL7xAo1xkqqg8tkd8pzjbDE", "I7ilbHUSOpCSeRKuXwN8a9YBA7KZXk06J30tS00R");
 
 $(document).ready(function() {
+	$('h1').click(function() {
+		alert("yikes!");
+	});
 	$('.menuChoices').hide();
+	bindClickFunctions();
 });
 
-$('.submit').click(function() {
-	$('.userInput').fadeOut(400, showMenus($('.money').val()));
-});
+var bindClickFunctions = function() {
+	$('.submit').click(function() {
+		$('.userInput').fadeOut(400, showMenus($('.money').val()));
+	});
+
+	$('.restaurant').click(function() {
+		showMenuFromRestaurant($('.money').val(), $(this).text());
+	});
+}
 
 var showMenus = function(money) {
 	var menu = Parse.Object.extend('Menu');
@@ -16,6 +26,7 @@ var showMenus = function(money) {
 			var results = generateRandom(results, money, 10),
 				html = formatOutput(results);
 			$('.menuChoices').append(html);
+			bindClickFunctions();
 		},
 		error: function(error) {
 			alert('shit');
@@ -23,6 +34,27 @@ var showMenus = function(money) {
 	});
 	$('.menuChoices').fadeIn();
 }
+
+var showMenuFromRestaurant = function(money, name) {
+	var menu = Parse.Object.extend('Menu');
+	var query = new Parse.Query(menu);
+	$('.menuChoices').empty();
+	query = query.equalTo('Restaurant', name)
+	query.find({
+		success: function(results) {
+			var results = generateRandom(results, money, 10),
+				html = formatOutput(results);
+			$('.menuChoices').append(html);
+			bindClickFunctions();
+		},
+		error: function(error) {
+			alert('shit');
+		}
+	});
+
+	$('.menuChoices').fadeIn();
+}
+
 
 var generateRandom = function(menus, money, num) {
 	var menus = shuffle(menus),
@@ -59,8 +91,8 @@ var formatOutput = function(menus) {
 			item = menus[i];
 			html += '<div class="menu">';
 			html += 'You can eat ' + item['quantity'] + ' of ' +
-				item['name'] + ' from ' + item['where'];
-			html += '</div>';
+				item['name'] + ' from <span class="restaurant">' + item['where'];
+			html += '</span></div>';
 		}
 	}
 	return html;
