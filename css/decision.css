@@ -12,6 +12,9 @@
 body {
 	background-color: #47008F;
 	color: #E6E600;
-
 }
 
+input {
+	resize: horizontal;
+	width: 300px;
+}

@@ -21,16 +21,32 @@ var bindClickFunctions = function() {
 var showMenus = function(money) {
 	var menu = Parse.Object.extend('evanstonMenu');
 	var query = new Parse.Query(menu);
+	query = query.limit(1000);
+	//query.lessThanOrEqualTo("ItemPrice", money);
 	query.find({
-		success: function(results) {
-			console.log(results);
-			var results = generateRandom(results, money, 10),
-				html = formatOutput(results);
-			$('.menuChoices').append(html);
-			bindClickFunctions();
+		success: function(results1) {
+			console.log(results1);
+			if (results1.length == 1000) {
+				query.skip(1000).limit(1000).find({
+					success: function(results2) {
+						var results = generateRandom(results1.concat(results2), money, 10),
+							html = formatOutput(results);
+						$('.menuChoices').append(html);
+						bindClickFunctions();
+					},
+					error: function(error) {
+						alert('Oops, we hiccuped!');
+					}
+				})
+			} else {
+				var results = generateRandom(results, money, 10),
+					html = formatOutput(results);
+				$('.menuChoices').append(html);
+				bindClickFunctions();
+			}
 		},
 		error: function(error) {
-			alert('shit');
+			alert('Oops, we hiccuped!');
 		}
 	});
 	$('.menuChoices').fadeIn();
@@ -40,7 +56,7 @@ var showMenuFromRestaurant = function(money, name) {
 	var menu = Parse.Object.extend('evanstonMenu');
 	var query = new Parse.Query(menu);
 	$('.menuChoices').empty();
-	query = query.equalTo('RestaurantName', name)
+	query.equalTo('RestaurantName', name)
 	query.find({
 		success: function(results) {
 			var results = generateRandom(results, money, 10),
@@ -49,7 +65,7 @@ var showMenuFromRestaurant = function(money, name) {
 			bindClickFunctions();
 		},
 		error: function(error) {
-			alert('shit');
+			alert('Oops, we hiccuped!');
 		}
 	});
 
