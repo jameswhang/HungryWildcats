@@ -7,8 +7,13 @@ $(document).ready(function() {
 
 var bindClickFunctions = function() {
 	$('.submit').click(function() {
-		$('.about').fadeOut();
-		$('.userInput').fadeOut(400, showMenus($('.money').val()));
+		var money = $('.money').val();
+		if (isNormalInteger(money)) {
+			$('.about').fadeOut();
+			$('.userInput').fadeOut(400, showMenus(money));
+		} else {
+			alert('You can only put in numbers!');
+		}
 	});
 
 	$('.restaurant').click(function() {
@@ -113,6 +118,11 @@ var formatOutput = function(menus) {
 		}
 	}
 	return html;
+}
+
+var isNormalInteger = function(str) {
+    var n = ~~Number(str);
+    return String(n) === str && n >= 0;
 }
 
 var shuffle = function(array) {
