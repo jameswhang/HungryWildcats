@@ -16,6 +16,10 @@ var bindClickFunctions = function() {
 		}
 	});
 
+	$('.more').click(function() {
+		$('.more').fadeOut(400, showMenus($('.money').val()));
+	})
+
 	$('.restaurant').click(function() {
 		showMenuFromRestaurant($('.money').val(), $(this).text());
 	});
@@ -112,10 +116,11 @@ var formatOutput = function(menus) {
 		for (var i = 0; i < numResults; i++) {
 			item = menus[i];
 			html += '<div class="menu">';
-			html += 'You can eat ' + item['quantity'] + ' of ' +
+			html += 'You can eat ' + item['quantity'] + ' ' +
 				item['name'] + ' from <span class="restaurant">' + item['where'];
 			html += '</span></div>';
 		}
+		html += '<button class="btn btn-primary more">Show me more?</button>';
 	}
 	return html;
 }
