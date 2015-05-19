@@ -76,7 +76,7 @@ var showMoreButton = function() {
 }
 
 var showMenuFromRestaurant = function(money, name) {
-	var menu = Parse.Object.extend('evanstonMenu');
+	var menu = Parse.Object.extend('EvanstonMenuExtended');
 	var query = new Parse.Query(menu);
 	$('.menuChoices').empty();
 	query.equalTo('RestaurantName', name)
@@ -110,6 +110,7 @@ var generateRandom = function(menus, money, num) {
 			mDesc = aMenu._serverData.ItemDesc,
             mImage = aMenu._serverData.image_url,
 			mRes = aMenu._serverData.RestaurantName;
+			//console.log(aMenu);
 
 		if (mPrice > money) {
 			continue; // can't afford..
