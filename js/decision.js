@@ -126,6 +126,10 @@ var generateRandom = function(menus, money, num) {
 	return results;
 }
 
+var renderMenu = function(item) {
+    return '<div class="btn-feature"><div class="col-md-3"><img class="menu-img" src=' + item['img'] + '></img></div><div class="col-md-9"><span class="menu-name">' + item['name'] + '</span><span class="menu-quantity">X' + item['quantity'] + '</span></div></div>';
+}
+
 var formatOutput = function(menus) {
 	var numResults = menus.length,
 		html = '',
@@ -135,18 +139,20 @@ var formatOutput = function(menus) {
 	} else {
 		for (var i = 0; i < numResults; i++) {
 			item = menus[i];
-			html += '<div class="menu">';
-			html += 'You can eat ' + item['quantity'] + ' ' +
-				item['name'] + ' from <span class="restaurant">' + item['where'];
-			html += '</span><img src="' + item['img'] + '"></img></div>';
+            html += renderMenu(item);
 		}
 	}
 	return html;
 }
 
 var isNormalInteger = function(str) {
-    var n = ~~Number(str);
-    return String(n) === str && n >= 0;
+    var re = /(?:\d*\.)?\d+/g;
+    var m = str.match(re);
+    if (m == null) {
+        return false;
+    } else {
+        return true;
+    }
 }
 
 var shuffle = function(array) {
