@@ -4,6 +4,8 @@ import time, random, re
 import yelppy
 import pprint
 
+DEFAULT_IMG_LINK = 'http://s3-media2.fl.yelpcdn.com/assets/2/www/img/d76d93882b01/default_avatars/menu_medium_square.png'
+
 def yelpSearchEvanston():
     all_biz = []
     for i in range(5):
@@ -77,20 +79,74 @@ def parseMenus(menu_pages):
             parsed_menu_items[i].append({'name': item_name, 'desc': item_desc, 'price': float(item_price)})
     return parsed_menu_items
 
+def parseMenusWithImage(menu_pages):
+    parsed_menu_items = []
+    for i in range(len(menu_pages)):
+        soup = BeautifulSoup(menu_pages[i])
+        all_menu_items = soup.find_all(attrs={"class": "media-block"})
+        parsed_menu_items.append([])
+        for item in all_menu_items:
+            item_detail_div = item.find_all(attrs={"class": "menu-item-details"})
+            if len(item_detail_div) == 0:
+                continue
+            item_detail_soup = BeautifulSoup(str(item_detail_div[0]))
+            item_price_div = item.find_all(attrs={"class": "menu-item-price-amount"})
+            item_price_label = item.find_all(attrs={"class": "menu-item-price-label"})
+            if len(item_price_div) == 0:
+                continue
+            item_img_div = item.find_all(attrs={"class": "photo-box"})
+            item_name_tag = item_detail_soup.h3
+            if item_name_tag.a is not None:
+                for name in item_name_tag.a.stripped_strings:
+                    item_name = name
+            else:
+                for name in item_name_tag.stripped_strings:
+                    item_name = name
+            item_desc_tag = item_detail_soup.p
+            if item_desc_tag is not None:
+                for desc in item_desc_tag.stripped_strings:
+                    item_desc = desc
+            else:
+                item_desc = 'no description'
+            if len(item_img_div) == 0:
+                item_img_link = DEFAULT_IMG_LINK
+            else:
+                item_img_soup = BeautifulSoup(str(item_img_div[0]))
+                item_img_tag = item_img_soup.img
+                item_img_link = item_img_tag['src']
+            if len(item_price_div) == 1:
+                item_price_soup = BeautifulSoup(str(item_price_div[0]))
+                for price in item_price_soup.stripped_strings:
+                    item_price = price.strip('$')
+                parsed_menu_items[i].append({'name': item_name, 'desc': item_desc, 'price': float(item_price), 'img':item_img_link})
+            else:
+                for j in range(len(item_price_div)):
+                    item_price_soup = BeautifulSoup(str(item_price_div[j]))
+                    if len(item_price_label) < (j+1):
+                        item_plabel = ''
+                    else:
+                        item_plabel_soup = BeautifulSoup(str(item_price_label[j]))
+                        for plabel in item_plabel_soup.stripped_strings:
+                            item_plabel = plabel
+                    for price in item_price_soup.stripped_strings:
+                        item_price = price.strip('$')
+                    parsed_menu_items[i].append({'name':item_name+'('+item_plabel+')', 'desc': item_desc, 'price':float(item_price), 'img':item_img_link})
+    return parsed_menu_items
+
 def writeMenuCSV(biz_with_menu, parsed_menu_items):
     f = open('evanston-res-menu-table.csv','w')
     f2 = open('evanston-res-list.csv','w')
     f2.write('RestaurantName,url,imge_url\n')
-    f.write('ItemName,ItemDesc,ItemPrice,RestaurantName\n')
+    f.write('ItemName,ItemDesc,ItemPrice,RestaurantName,image_url\n')
     for i in range(len(biz_with_menu)):
         for item in parsed_menu_items[i]:
-            f.write('"'+item['name'].replace('"','').encode('utf8')+'"'+','+'"'+item['desc'].replace('"','').encode('utf8')+'"'+','+str(item['price'])+','+'"'+biz_with_menu[i]['name'].replace('"','').encode('utf8')+'"'+'\n')
+            f.write('"'+item['name'].replace('"','').encode('utf8')+'"'+','+'"'+item['desc'].replace('"','').encode('utf8')+'"'+','+str(item['price'])+','+'"'+biz_with_menu[i]['name'].replace('"','').encode('utf8')+'"'+','+item['img'].encode('utf8')+'\n')
         f2.write('"'+biz_with_menu[i]['name'].replace('"','').encode('utf8')+'"'+','+biz_with_menu[i]['url'].encode('utf8')+','+biz_with_menu[i]['image_url'].encode('utf8')+'\n')
 
 
 all_biz = yelpSearchEvanston()
 biz_with_menu, menu_urls = lookForMenu(all_biz)
 menu_pages = scrapeMenu(biz_with_menu, menu_urls)
-parsed_menu_items = parseMenus(menu_pages)
+parsed_menu_items = parseMenusWithImage(menu_pages)
 writeMenuCSV(biz_with_menu, parsed_menu_items)
 
