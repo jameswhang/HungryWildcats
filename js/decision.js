@@ -1,5 +1,3 @@
-Parse.initialize("LKT2P8orJ6egkhiXZqL7xAo1xkqqg8tkd8pzjbDE", "I7ilbHUSOpCSeRKuXwN8a9YBA7KZXk06J30tS00R");
-
 $(document).ready(function() {
 	$('.menuChoices').hide();
 	bindClickFunctions();
@@ -17,11 +15,16 @@ var bindClickFunctions = function() {
 	});
 
 	$('.more').click(function() {
+		$('.home').fadeOut(400);
 		$('.more').fadeOut(400, showMenus($('.money').val()));
+	});
+
+	$('.home').click(function() {
+		location.reload();
 	})
 
 	$('.restaurant').click(function() {
-		showMenuFromRestaurant($('.money').val(), $(this).text());
+		$('.more').fadeOut(400, showMenuFromRestaurant($('.money').val(), $(this).text()));
 	});
 }
 
@@ -38,6 +41,8 @@ var showMenus = function(money) {
 					success: function(results2) {
 						var results = generateRandom(results1.concat(results2), money, 10),
 							html = formatOutput(results);
+							html += showMoreButton();
+							html += showHomeButton();
 						$('.menuChoices').append(html);
 						bindClickFunctions();
 					},
@@ -48,6 +53,7 @@ var showMenus = function(money) {
 			} else {
 				var results = generateRandom(results, money, 10),
 					html = formatOutput(results);
+					html += showMoreButton();
 				$('.menuChoices').append(html);
 				bindClickFunctions();
 			}
@@ -59,6 +65,14 @@ var showMenus = function(money) {
 	$('.menuChoices').fadeIn();
 }
 
+var showHomeButton = function() {
+	return '<button class="btn btn-primary home">Home</button>';
+}
+
+var showMoreButton = function() {
+	return '<button class="btn btn-primary more">More</button>';
+}
+
 var showMenuFromRestaurant = function(money, name) {
 	var menu = Parse.Object.extend('evanstonMenu');
 	var query = new Parse.Query(menu);
@@ -68,6 +82,7 @@ var showMenuFromRestaurant = function(money, name) {
 		success: function(results) {
 			var results = generateRandom(results, money, 10),
 				html = formatOutput(results);
+				html += showHomeButton();
 			$('.menuChoices').append(html);
 			bindClickFunctions();
 		},
@@ -120,7 +135,6 @@ var formatOutput = function(menus) {
 				item['name'] + ' from <span class="restaurant">' + item['where'];
 			html += '</span></div>';
 		}
-		html += '<button class="btn btn-primary more">Show me more?</button>';
 	}
 	return html;
 }
