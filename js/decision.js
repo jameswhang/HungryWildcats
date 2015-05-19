@@ -24,12 +24,14 @@ var bindClickFunctions = function() {
 	})
 
 	$('.restaurant').click(function() {
-		$('.more').fadeOut(400, showMenuFromRestaurant($('.money').val(), $(this).text()));
+		$('.more').fadeOut(400);
+		$('.home').fadeOut(400);
+		showMenuFromRestaurant($('.money').val(), $(this).text());
 	});
 }
 
 var showMenus = function(money) {
-	var menu = Parse.Object.extend('evanstonMenu');
+	var menu = Parse.Object.extend('EvanstonMenuExtended');
 	var query = new Parse.Query(menu);
 	query = query.limit(1000);
 	//query.lessThanOrEqualTo("ItemPrice", money);
@@ -106,6 +108,7 @@ var generateRandom = function(menus, money, num) {
 			mPrice = aMenu._serverData.ItemPrice,
 			mName = aMenu._serverData.ItemName,
 			mDesc = aMenu._serverData.ItemDesc,
+            mImage = aMenu._serverData.image_url,
 			mRes = aMenu._serverData.RestaurantName;
 
 		if (mPrice > money) {
@@ -115,6 +118,7 @@ var generateRandom = function(menus, money, num) {
 			tempRes['quantity'] = Math.floor(money / mPrice);
 			tempRes['where'] = mRes;
 			tempRes['desc'] = mDesc;
+            tempRes['img'] = mImage;
 			results.push(tempRes);
 		}
 	}
@@ -133,7 +137,7 @@ var formatOutput = function(menus) {
 			html += '<div class="menu">';
 			html += 'You can eat ' + item['quantity'] + ' ' +
 				item['name'] + ' from <span class="restaurant">' + item['where'];
-			html += '</span></div>';
+			html += '</span><img src="' + item['img'] + '"></img></div>';
 		}
 	}
 	return html;
