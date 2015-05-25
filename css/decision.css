@@ -6,6 +6,8 @@
 
 .menu {
         margin-top: 10px; 
+        padding-right: 0;
+        padding-left: 0;
 }
 
 .menu-img {
@@ -15,6 +17,7 @@
 
 .menu-name {
         font-style: italic;
+        padding-right: 0;
 }
 
 .menu-price{
