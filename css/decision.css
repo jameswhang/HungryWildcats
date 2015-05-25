@@ -31,7 +31,9 @@
 }
 
 body {
-	background-color: #CC99FF;
+    background: url('../images/background.jpg') top right no-repeat;
+    background-attachment: fixed;
+	
 	color: #000000;
 }
 
