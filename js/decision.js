@@ -120,6 +120,7 @@ var generateRandom = function(menus, money, num) {
 			tempRes['where'] = mRes;
 			tempRes['desc'] = mDesc;
             tempRes['img'] = mImage;
+                        tempRes['price'] = mPrice;
 			results.push(tempRes);
 		}
 	}
@@ -127,7 +128,12 @@ var generateRandom = function(menus, money, num) {
 }
 
 var renderMenu = function(item) {
-    return '<div class="btn-feature"><div class="col-md-3"><img class="menu-img" src=' + item['img'] + '></img></div><div class="col-md-9"><span class="menu-name">' + item['name'] + '</span><span class="menu-quantity">X' + item['quantity'] + '</span></div></div>';
+    return '<div class="col-md-12 menu"><div class="col-md-1 col-md-offset-2"><img src=' + item['img'] + 
+' class="img-circle" width="60px" height="60px"></img></div><div class="col-md-6 menu-name"><span> You can have ' + 
+item['quantity'] + ' order(s) of ' + item['name'] + '</span>' + 
+//'<span class="menu-quantity"> ' + item['quantity'] + '</span>'
+'</div><div class="col-md-1 menu-price"><span>$ ' + item['price'] + '</span></div>' +
+'<div class="col-md-6">from <span class="restaurant">' + item['where'] + '</span></div></div>';
 }
 
 var formatOutput = function(menus) {

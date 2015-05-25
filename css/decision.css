@@ -4,6 +4,19 @@
 	vertical-align: middle;
 }
 
+.menu {
+        margin-top: 10px; 
+}
+
+.menu-name {
+        padding-top: 5px;
+        font-style: italic;
+}
+
+.menu-price{
+        padding-top: 5px;
+}
+
 .navbar .navbar-default {
 	color: black;
 }
