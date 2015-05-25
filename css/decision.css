@@ -34,7 +34,7 @@
 
 .btns {
         padding-top: 10px;
-        padding-bottom: 10px;
+        padding-bottom: 5px;
 }
 
 body {
@@ -68,8 +68,10 @@ input {
 .home {
         margin-top: 5px;
         margin-left: 5px;
+        margin-bottom: 5px;
 }
 
 .more {
         margin-top: 5px;
+        margin-bottom: 5px;
 }

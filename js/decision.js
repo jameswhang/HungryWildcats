@@ -15,7 +15,7 @@ var bindClickFunctions = function() {
 	});
 
 	$('.more').click(function() {
-		$('.btns').fadeOut(400, showMenus($('.money').val()));
+		$('.btns').fadeOut(400, function() { $(this).remove(); showMenus($('.money').val());});
 	});
 
 	$('.home').click(function() {
@@ -23,7 +23,8 @@ var bindClickFunctions = function() {
 	})
 
 	$('.restaurant').click(function() {
-		$('.btns').fadeOut(400, showMenuFromRestaurant($('.money').val(), $(this).text()));
+                resname = $(this).text();
+		$('.btns').fadeOut(400, function() { $(this).remove(); showMenuFromRestaurant($('.money').val(), resname);});
 	});
 }
 
@@ -78,12 +79,13 @@ var showMenuFromRestaurant = function(money, name) {
 	var menu = Parse.Object.extend('EvanstonMenuExtended');
 	var query = new Parse.Query(menu);
 	$('.menuChoices').empty();
+        console.log(name);
 	query.equalTo('RestaurantName', name)
 	query.find({
 		success: function(results) {
 			var results = generateRandom(results, money, 10),
 				html = formatOutput(results);
-                                html += '<div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 btns" sytle="vertical-align:middle;">'
+                                html += '<div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4" sytle="vertical-align:middle;">'
 				html += showHomeButton();
                                 html += '</div>'
 			$('.menuChoices').append(html);
