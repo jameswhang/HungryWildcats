@@ -128,12 +128,12 @@ var generateRandom = function(menus, money, num) {
 }
 
 var renderMenu = function(item) {
-    return '<div class="col-xs-12 col-sm-12 col-md-12 menu"><div class="col-xs-2 col-sm-2 col-sm-offset-1 col-md-1 col-md-offset-2 menu-img"><img src=' + item['img'] + 
+    return '<div class="col-xs-12 col-sm-12 col-md-12 menu"><div class="col-xs-1 col-sm-2 col-sm-offset-1 col-md-1 col-md-offset-2 menu-img"><img src=' + item['img'] + 
 ' class="img-circle" width="60px" height="60px"></img></div><div class="col-xs-8 col-sm-6 col-md-6 menu-name"><span>' + 
 item['quantity'] + ' order(s) of ' + item['name'] + '</span></div>' + 
 //'<span class="menu-quantity"> ' + item['quantity'] + '</span>'
 '<div class="col-xs-7 col-sm-6 col-md-6">from <span class="restaurant">' + item['where'] + '</span></div>' +
-'<div class="col-xs-2 col-sm-3 col-md-1 menu-price"><span>$ ' + item['price'] + '</span></div></div>';
+'<div class="col-xs-3 col-sm-3 col-md-1 menu-price"><span>$ ' + item['price'] + '</span></div></div>';
 }
 
 var formatOutput = function(menus) {
