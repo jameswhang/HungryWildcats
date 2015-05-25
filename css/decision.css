@@ -10,7 +10,7 @@
 
 .menu-img {
         padding-top: 10px;
-        margin-left: 0;
+        padding-left: 0;
 }
 
 .menu-name {
@@ -19,7 +19,7 @@
 
 .menu-price{
         margin-top: -10px;
-        margin-right: 0
+        padding-right: 0
 }
 
 .navbar .navbar-default {
