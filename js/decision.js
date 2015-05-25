@@ -132,8 +132,8 @@ var renderMenu = function(item) {
 ' class="img-circle" width="60px" height="60px"></img></div><div class="col-xs-6 col-sm-6 col-md-6 menu-name"><span> You can have ' + 
 item['quantity'] + ' order(s) of ' + item['name'] + '</span></div>' + 
 //'<span class="menu-quantity"> ' + item['quantity'] + '</span>'
-'<div class="col-xs-6 col-sm-6 col-md-6">from <span class="restaurant">' + item['where'] + '</span></div>' + 
-'<div class="col-xs-3 col-sm-3 col-md-1 menu-price"><span>$ ' + item['price'] + '</span></div></div>';
+'<div class="col-xs-3 col-sm-3 col-md-1 menu-price"><span>$ ' + item['price'] + '</span></div>' +
+'<div class="col-xs-6 col-sm-6 col-md-6">from <span class="restaurant">' + item['where'] + '</span></div></div>';
 }
 
 var formatOutput = function(menus) {
