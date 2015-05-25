@@ -129,7 +129,7 @@ var generateRandom = function(menus, money, num) {
 }
 
 var renderMenu = function(item) {
-    return '<div class="col-xs-12 col-sm-10 col-sm-offset-8 col-md-8 col-md-offset-2  menu"><div class="col-xs-2 col-sm-2 col-md-1 menu-img"><img src=' + item['img'] + 
+    return '<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2  menu"><div class="col-xs-2 col-sm-2 col-md-1 menu-img"><img src=' + item['img'] + 
 ' class="img-circle" width="60px" height="60px"></img></div><div class="col-xs-7 col-sm-7 col-md-10 menu-name"><span>' + 
 item['quantity'] + ' order(s) of ' + item['name'] + '</span></div>' + 
 //'<span class="menu-quantity"> ' + item['quantity'] + '</span>'
