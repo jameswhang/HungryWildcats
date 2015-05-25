@@ -40,7 +40,7 @@ var showMenus = function(money) {
 					success: function(results2) {
 						var results = generateRandom(results1.concat(results2), money, 10),
 							html = formatOutput(results);
-							html += '<div class="col-xs-4 col-xs-offset-4 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 btns">'
+							html += '<div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 btns">'
 							html += showMoreButton();
 							html += showHomeButton();
 							html += '</div>'
@@ -83,7 +83,7 @@ var showMenuFromRestaurant = function(money, name) {
 		success: function(results) {
 			var results = generateRandom(results, money, 10),
 				html = formatOutput(results);
-                                html += '<div class="col-xs-4 col-xs-offset-4 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 btns">'
+                                html += '<div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 btns" sytle="vertical-align:middle;">'
 				html += showHomeButton();
                                 html += '</div>'
 			$('.menuChoices').append(html);
@@ -130,11 +130,11 @@ var generateRandom = function(menus, money, num) {
 
 var renderMenu = function(item) {
     return '<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2  menu"><div class="col-xs-2 col-sm-2 col-md-1 menu-img"><img src=' + item['img'] + 
-' class="img-circle" width="60px" height="60px"></img></div><div class="col-xs-7 col-sm-7 col-md-10 menu-name"><span>' + 
+' class="img-circle" width="60px" height="60px"></img></div><div class="col-xs-7 col-sm-8 col-md-10 menu-name"><span>' + 
 item['quantity'] + ' order(s) of ' + item['name'] + '</span></div>' + 
 //'<span class="menu-quantity"> ' + item['quantity'] + '</span>'
-'<div class="col-xs-7 col-sm-6 col-md-10" style="padding-right: 0;">from <span class="restaurant">' + item['where'] + '</span></div>' +
-'<div class="col-xs-3 col-sm-3 col-md-1 menu-price"><span>$ ' + item['price'] + '</span></div></div>';
+'<div class="col-xs-7 col-sm-8 col-md-10" style="padding-right: 0;">from <span class="restaurant">' + item['where'] + '</span></div>' +
+'<div class="col-xs-3 col-sm-2 col-md-1 menu-price"><span>$ ' + item['price'] + '</span></div></div>';
 }
 
 var formatOutput = function(menus) {
