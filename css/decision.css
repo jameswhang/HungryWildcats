@@ -40,7 +40,7 @@ input {
 	width: 300px;
 }
 
-@media screen and (max-width: 600) {
+@media screen {
     input {
         resize: horizontal;
         width: max-width;
