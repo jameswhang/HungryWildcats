@@ -8,13 +8,16 @@
         margin-top: 10px; 
 }
 
+.menu-img {
+        padding-top: 10px;
+}
+
 .menu-name {
-        padding-top: 5px;
         font-style: italic;
 }
 
 .menu-price{
-        margin-top: -5px;
+        margin-top: -10px;
 }
 
 .navbar .navbar-default {
