@@ -15,8 +15,7 @@ var bindClickFunctions = function() {
 	});
 
 	$('.more').click(function() {
-		$('.home').fadeOut(400);
-		$('.more').fadeOut(400, showMenus($('.money').val()));
+		$('.btns').fadeOut(400, showMenus($('.money').val()));
 	});
 
 	$('.home').click(function() {
@@ -24,9 +23,7 @@ var bindClickFunctions = function() {
 	})
 
 	$('.restaurant').click(function() {
-		$('.more').fadeOut(400);
-		$('.home').fadeOut(400);
-		showMenuFromRestaurant($('.money').val(), $(this).text());
+		$('.btns').fadeOut(400, showMenuFromRestaurant($('.money').val(), $(this).text()));
 	});
 }
 
@@ -43,8 +40,10 @@ var showMenus = function(money) {
 					success: function(results2) {
 						var results = generateRandom(results1.concat(results2), money, 10),
 							html = formatOutput(results);
+							html += '<div class="btns">'
 							html += showMoreButton();
 							html += showHomeButton();
+							html += '</div>'
 						$('.menuChoices').append(html);
 						bindClickFunctions();
 					},
