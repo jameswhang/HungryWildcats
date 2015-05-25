@@ -130,10 +130,10 @@ var generateRandom = function(menus, money, num) {
 var renderMenu = function(item) {
     return '<div class="col-md-12 menu"><div class="col-md-1 col-md-offset-2"><img src=' + item['img'] + 
 ' class="img-circle" width="60px" height="60px"></img></div><div class="col-md-6 menu-name"><span> You can have ' + 
-item['quantity'] + ' order(s) of ' + item['name'] + '</span>' + 
+item['quantity'] + ' order(s) of ' + item['name'] + '</span></div>' + 
 //'<span class="menu-quantity"> ' + item['quantity'] + '</span>'
-'</div><div class="col-md-1 menu-price"><span>$ ' + item['price'] + '</span></div>' +
-'<div class="col-md-6">from <span class="restaurant">' + item['where'] + '</span></div></div>';
+'<div class="col-md-6">from <span class="restaurant">' + item['where'] + '</span></div>' + 
+'<div class="col-md-1 menu-price"><span>$ ' + item['price'] + '</span></div></div>';
 }
 
 var formatOutput = function(menus) {
