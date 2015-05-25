@@ -33,7 +33,7 @@
 body {
     background: url('../images/background.jpg') top right no-repeat;
     background-attachment: fixed;
-	
+    background-size: cover;	
 	color: #000000;
 }
 
