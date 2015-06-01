@@ -13,8 +13,7 @@
 
 .page {
         z-index: 100;
-        background: url('../images/wood.jpg') top right no-repeat;
-        background-size: cover;	
+        background: url('../images/wood.jpg') top right;
         margin-bottom: 20px;
         padding-left: 5px;
         padding-right: 5px;
