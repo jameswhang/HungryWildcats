@@ -36,7 +36,8 @@
 }
 
 .menu-img {
-        padding-top: 10px;
+        padding-top: 15px;
+        padding-bottom: 15px;
         padding-left: 0;
 }
 
@@ -87,9 +88,6 @@ input {
     page {
         margin-left: 10px !important;
     } 
-    menu-img {
-        padding-top: 15px;
-    }
 }
 
 .userInput {
