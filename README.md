@@ -1,3 +1,5 @@
+## Use
+<a href="www.hungrywildcats.me">www.hungrywildcats.me</a>
 ## Inspiration
 “- What do you wanna eat? - Not sure, you? - Just pick something - No, YOU pick something! - Ugh…” Sounds familiar? (This is me and my girlfriend on every date) It’d be nice if SOMEBODY can make a decision for us. So, we decided to make an app that decides this for us.
 ## How it works
