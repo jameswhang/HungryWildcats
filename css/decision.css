@@ -65,12 +65,15 @@ input {
 	width: 300px;
 }
 
-@media screen {
+@media screen and (max-width: 600px) {
     input {
         resize: horizontal;
         width: max-width;
-    }   
-}  
+    }  
+    body {
+        font-size:15px;
+    } 
+} 
 
 .restaurant {
 	color: blue;
