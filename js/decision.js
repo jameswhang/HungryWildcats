@@ -162,9 +162,9 @@ var formatOutput = function(menus) {
 
 var isNormalInteger = function(str) {
     var spaceCount = (str.match(/ /g) || []).length,
-        dotCount = (str.match(/./g) || []).length;
+        dotCount = (str.match(/\./g) || []).length;
 
-    if (spaceCount > 1 || dotCount > 1) {
+    if (spaceCount >= 1 || dotCount > 1) {
         return false;
     }
 
