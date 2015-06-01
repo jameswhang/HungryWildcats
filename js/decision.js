@@ -7,8 +7,8 @@ var bindClickFunctions = function() {
 	$('.submit').click(function() {
 		var money = $('.money').val();
 		if (isNormalInteger(money)) {
-			$('.about').fadeOut();
 			$('.userInput').fadeOut(400, showMenus(money));
+                        $('.header').fadeOut(400, function() { $('.header').fadeIn(400,changeHeader());});
 		} else {
 			alert('You can only put in numbers!');
 		}
@@ -26,17 +26,21 @@ var bindClickFunctions = function() {
                 resname = $(this).text();
 		$('.btns').fadeOut(400, function() { $(this).remove(); showMenuFromRestaurant($('.money').val(), resname);});
 	});
+
+}
+
+var changeHeader = function() {
+    $('.header').html('<h1>Here are some things you can eat!</h1>');
+//    $('.header').fadeIn();
 }
 
 var showMenus = function(money) {
 	var menu = Parse.Object.extend('EvanstonMenuExtended');
 	var query = new Parse.Query(menu);
 	query = query.limit(1000);
-        console.log(money);
 	//query.lessThanOrEqualTo("ItemPrice", money);
 	query.find({
 		success: function(results1) {
-			console.log(results1);
 			if (results1.length == 1000) {
 				query.skip(1000).limit(1000).find({
 					success: function(results2) {
@@ -80,7 +84,6 @@ var showMenuFromRestaurant = function(money, name) {
 	var menu = Parse.Object.extend('EvanstonMenuExtended');
 	var query = new Parse.Query(menu);
 	$('.menuChoices').empty();
-        console.log(name);
 	query.equalTo('RestaurantName', name)
 	query.find({
 		success: function(results) {
