@@ -8,6 +8,7 @@ var bindClickFunctions = function() {
 		var money = $('.money').val();
 		if (isNormalInteger(money)) {
 			$('.userInput').fadeOut(400, showMenus(money));
+                        $('.header-padding').fadeOut(400);
                         $('.header').fadeOut(400, function() { $('.header').fadeIn(400,changeHeader());});
 		} else {
 			alert('You can only put in numbers!');
@@ -135,12 +136,12 @@ var generateRandom = function(menus, money, num) {
 }
 
 var renderMenu = function(item) {
-    return '<div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2  menu"><div class="col-xs-2 col-sm-2 col-md-1 menu-img"><img src=' + item['img'] + 
-' class="img-circle" width="60px" height="60px"></img></div><div class="col-xs-7 col-sm-8 col-md-10 menu-name"><span>' + 
+    return '<div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 menu"><div class="col-xs-2 col-sm-2 col-md-1 menu-img"><img src=' + item['img'] + 
+' class="img-circle" width="60px" height="60px"></img></div><div class="col-xs-7 col-sm-8 col-md-9 menu-name"><span>' + 
 item['quantity'] + ' order(s) of ' + item['name'] + '</span></div>' + 
 //'<span class="menu-quantity"> ' + item['quantity'] + '</span>'
-'<div class="col-xs-7 col-sm-8 col-md-10" style="padding-right: 0;">from <span class="restaurant">' + item['where'] + '</span></div>' +
-'<div class="col-xs-3 col-sm-2 col-md-1 menu-price"><span>$ ' + item['price'] + '</span></div></div>';
+'<div class="col-xs-7 col-sm-8 col-md-9" style="padding-right: 0;">from <span class="restaurant">' + item['where'] + '</span></div>' +
+'<div class="col-xs-3 col-sm-2 col-md-2 menu-price"><span>$ ' + item['price'] + '</span></div></div>';
 }
 
 var formatOutput = function(menus) {
