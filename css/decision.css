@@ -11,6 +11,14 @@
 	vertical-align: middle;
 }
 
+.page {
+        z-index: 100;
+        background-color: #AAAAAA;
+        margin-bottom: 20px;
+        padding-left: 5px;
+        padding-right: 5px;
+}
+
 .menu {
         margin-top: 10px;
         background-color: rgba(240,240,240,0.75);
@@ -53,6 +61,7 @@
 
 body {
     background: url('../images/background.jpg') top right no-repeat;
+    z-index: 0;
     background-attachment: fixed;
     background-size: cover;	
 	color: #000000;
@@ -72,8 +81,16 @@ input {
     }  
     body {
         font-size:15px;
+    }
+    page {
+        margin-left: 10px !important;
     } 
-} 
+}
+
+.userInput {
+    padding-left: 5px;
+    padding-right: 5px;
+}
 
 .restaurant {
 	color: blue;

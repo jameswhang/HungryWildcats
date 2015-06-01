@@ -47,7 +47,7 @@ var showMenus = function(money) {
 					success: function(results2) {
 						var results = generateRandom(results1.concat(results2), money, 10),
 							html = formatOutput(results);
-							html += '<div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 btns">'
+							html += '<div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 btns">'
 							html += showMoreButton();
 							html += showHomeButton();
 							html += '</div>'
@@ -90,7 +90,7 @@ var showMenuFromRestaurant = function(money, name) {
 		success: function(results) {
 			var results = generateRandom(results, money, 10),
 				html = formatOutput(results);
-                                html += '<div class="col-xs-6 col-xs-offset-3 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4" sytle="vertical-align:middle;">'
+                                html += '<div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4" sytle="vertical-align:middle;">'
 				html += showHomeButton();
                                 html += '</div>'
 			$('.menuChoices').append(html);
@@ -136,7 +136,7 @@ var generateRandom = function(menus, money, num) {
 }
 
 var renderMenu = function(item) {
-    return '<div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 menu"><div class="col-xs-2 col-sm-2 col-md-1 menu-img"><img src=' + item['img'] + 
+    return '<div class="col-xs-12 col-sm-12 col-md-12 menu"><div class="col-xs-2 col-sm-2 col-md-1 menu-img"><img src=' + item['img'] + 
 ' class="img-circle" width="60px" height="60px"></img></div><div class="col-xs-7 col-sm-8 col-md-9 menu-name"><span>' + 
 item['quantity'] + ' order(s) of ' + item['name'] + '</span></div>' + 
 //'<span class="menu-quantity"> ' + item['quantity'] + '</span>'
