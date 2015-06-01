@@ -5,10 +5,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/decision.css">
-    <link re="stylesheet" href="css/decision2.css">
     <script src="js/jquery-1.11.3.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="js/parse-1.4.2.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -40,7 +39,8 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-
+    
+    <div class="page col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
     <div id="about" class="text-center col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3 about">
         <h1>You can never decide on what to eat</h1>
         <h3>And.. we're here for you!</h4>
@@ -49,5 +49,20 @@
         <p>We can suggest you where to eat based on the money you have. <strong><i>Completely randomly.</i></strong> Oh, but we do tell you how much of what you can eat with that money at where!</p>
     </div>
 
+
+    </div>
+    <script type="text/javascript">
+    $('.money').val('15');
+    $('.increment-money').click(function() {
+        var current = parseInt($('.money').val());
+        $('.money').val((current+1).toString());
+    });
+    $('.decrement-money').click(function() {
+        var current = parseInt($('.money').val());
+        $('.money').val((current-1).toString());
+    });
+
+    </script>
+    <script src="js/decision.js"></script>
 </body>
 
