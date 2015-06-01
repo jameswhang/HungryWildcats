@@ -87,6 +87,9 @@ input {
     page {
         margin-left: 10px !important;
     } 
+    menu-img {
+        padding-top: 15px;
+    }
 }
 
 .userInput {
