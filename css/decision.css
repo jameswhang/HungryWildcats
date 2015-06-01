@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'Fontin Sans';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Fontin Sans'), url('fonts/Fontin_Sans_R_45b.otf');
+}
+
 .menuChoices .header {
 	float: none;
 	display: inline-block;
@@ -36,6 +43,7 @@
 
 .navbar .navbar-default {
 	color: black;
+    font-family: 'Ubuntu';
 }
 
 .btns {
@@ -48,6 +56,8 @@ body {
     background-attachment: fixed;
     background-size: cover;	
 	color: #000000;
+    font-family: 'Ubuntu';
+    font-size: 20px;
 }
 
 input {
