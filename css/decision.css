@@ -12,6 +12,12 @@
         padding-bottom: 10px;
 }
 
+.about {
+        background-color: rgba(240,240,240,0.75);
+        padding-right: 10px;
+        padding-left: 10px;
+}
+
 .menu-img {
         padding-top: 10px;
         padding-left: 0;

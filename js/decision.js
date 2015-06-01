@@ -32,6 +32,7 @@ var showMenus = function(money) {
 	var menu = Parse.Object.extend('EvanstonMenuExtended');
 	var query = new Parse.Query(menu);
 	query = query.limit(1000);
+        console.log(money);
 	//query.lessThanOrEqualTo("ItemPrice", money);
 	query.find({
 		success: function(results1) {
