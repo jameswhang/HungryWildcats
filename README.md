@@ -6,4 +6,5 @@
 Enter the amount of money you’re willing to spend, and click the button. That’s it! If you want, you can view all the menus that you can have at a particular restaurant by clicking on a restaurant’s name. The choices are made completely randomly, which makes it more fun!
 ## Team
 James Whang
+
 Tai Won Chung
